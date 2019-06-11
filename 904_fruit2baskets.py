@@ -35,7 +35,15 @@ class Solution:
 #下面是solution里的python2的做法 
 class Solution:
     def totalFruit(self, tree):
-        blocks =[(k, len(list(v))) for k, v in itertools.groupby(tree)]  #用这个来做元祖很酷
+        blocks =[(k, len(list(v))) for k, v in itertools.groupby(tree)]  #用这个来做元组很酷
+        '''
+('k:', 1) ('v:', [1])
+('k:', 2) ('v:', [2, 2])
+('k:', 1) ('v:', [1])
+('k:', 2) ('v:', [2])
+('k:', 3) ('v:', [3])
+('k:', 1) ('v:', [1])
+        '''
         debug = True
         if debug:
             print(blocks)
