@@ -19,7 +19,9 @@ class Solution:
         return reverse(head)
 
 '''
-
+下面的是别人的。 主要学到的有：
+1. python的多变量同时赋值
+2. 变量名的明明 prev, next, cur 啥的 好好学学吖
 '''
     def reverseList(self,head): #iterative
         prev = None
