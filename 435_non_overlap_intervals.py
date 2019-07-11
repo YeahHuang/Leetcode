@@ -6,7 +6,7 @@ class Solution:
         用hash pop i 然后把更少的依次扔出来
         ps 优化：我发现不用判断在不在里头 直接减就是了 
         '''
-        end_pos = -2147483647
+        end_pos = -2147483647 #float('-inf')
         debug = False
         ori_len = len(intervals)
         '''
