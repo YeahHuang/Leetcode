@@ -1,6 +1,6 @@
 class MedianFinder:
 
-    def __init__(self):
+    def __init__(self): #312ms
         """
         initialize your data structure here.
         """
@@ -57,16 +57,29 @@ class MedianFinder:
 
     def addNum(self,num):
         small, large = self.heaps
-        heappush(small, -heappushpop(large, num))
+        heappush(small, -heappushpop(large, num))  #heappushpop = heappush + heappop
         if len(large) < len(small): #保持二者平衡
-            heappush(large, -heappop(small)) #为什么这里是减呢？
+            heappush(large, -heappop(small)) #为什么这里是减呢？ Ans： 因为默认是小根堆 所以为了取max值用-的
 
     def findMedian(self):
         small, large = self.heaps
         if len(large) > len(small):
-            return flat(large[0])
+            return float(large[0]) 
         return (large[0]-small[0])/2.0
 
+'''
+heapq 的其他一些用法：
+heapq.heapify(x)： Transform list x into a heap, in-place, in linear time.
+heapq.heapreplace(heap, item)： = heappop + heappush 但更加efficient
+heapq.merge(*iterables)
+heapq.nlargest(n, iterable[, key])
+heapq.nsmallest(n, iterable[, key]) 返回list
+p.s. 比较元素可以为tuple e.g
+heappush(h, (5, 'write code'))
+heappush(h, (1, 'write spec'))
+heappush(h, (3, 'create tests'))
+heappop(h) 就会输出 (1, 'write spec')
+'''
 # Your MedianFinder object will be instantiated and called as such:
 # obj = MedianFinder()
 # obj.addNum(num)
