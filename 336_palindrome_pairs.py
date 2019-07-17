@@ -1,6 +1,8 @@
 class Solution:
+
+    #Sol1 O(n*n*w) TLE
     def palindromePairs(self, words: List[str]) -> List[List[int]]:
-        n = len(words)#TLE
+        n = len(words)
         palindrom_pairs = []
         for i in range(n):
             for j in range(i+1, n):
@@ -12,9 +14,30 @@ class Solution:
                     palindrom_pairs.append([j,i])
         return palindrom_pairs
 
+    #Sol2 O(n*w*w) 360ms 看起来很短 但是对于["abcd","dcba"] & ["bob",""] 这样的判断WA一次
+    #改编自 https://leetcode.com/problems/palindrome-pairs/discuss/79209/Accepted-Python-Solution-With-Explanation
+    def palindromePairs(self, words):
+        m_words = {word:i for i,word in enumerate(words)}
+        m_reversed_words = {word[::-1]:i for i, word in enumerate(words)}
+        palindrom_pairs = []
+        for i, word in enumerate(words):
+            for j in range(len(word)):
+                pref = word[:j]
+                suff = word[j:]
+                if pref[::-1]==pref and suff in m_reversed_words and m_reversed_words[suff]!=i:
+                    palindrom_pairs.append([m_reversed_words[suff],i])
+                if suff[::-1]==suff and pref in m_reversed_words and m_reversed_words[pref]!=i:
+                    palindrom_pairs.append([i, m_reversed_words[pref]])
+                    if j==0: #pref == "" 这里不能忘吖！
+                        palindrom_pairs.append([m_reversed_words[""],i])
 
+        return palindrom_pairs
+
+    #Sol3 TRIE
+    #https://leetcode.com/problems/palindrome-pairs/discuss/79195/O(n-*-k2)-java-solution-with-Trie-structure
+    #https://www.cnblogs.com/dolphin0520/archive/2011/10/11/2207886.html
     def palindromePairs(self, words: List[str]) -> List[List[int]]:
-        #WA
+        #自己写的 sort+查找 WA 因为比较的left right的界限很难判定的
         def isPalindrom(s1:str, s2:str) -> bool:
             if len(s1)>len(s2):
                 s1,s2 = s2, s1
