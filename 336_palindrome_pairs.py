@@ -27,7 +27,29 @@ class Solution:
                     palindrom_pairs.append([i, m_reversed_words[pref]])
                     if j==0: #pref == "" 这里不能忘吖！
                         palindrom_pairs.append([m_reversed_words[""],i])
-    #Sol3 TRIE
+    #Sol3 TRIE 但这个其实不是很适合python这个结构的 这里摘录From https://stackoverflow.com/questions/11015320/how-to-create-a-trie-in-python
+    def make_trie(*words):
+        root = dict()
+        for word in words:
+            current_dict = root
+            for letter in word:
+                current_dict = current_dict.setdefault(letter, {})
+            current_dict[_end] = _end
+        return root
+
+    def in_trie(trie, word):
+        current_dict = trie
+        for letter in word:
+            if letter in current_dict:
+                current_dict = current_dict[letter]
+            else:
+                return False
+        else:
+            if _end in current_dict:
+                return True
+            else:
+                return False
+
     #https://leetcode.com/problems/palindrome-pairs/discuss/79195/O(n-*-k2)-java-solution-with-Trie-structure
     #https://www.cnblogs.com/dolphin0520/archive/2011/10/11/2207886.html
         #自己写的 sort+查找 WA 因为比较的left right的界限很难判定的
