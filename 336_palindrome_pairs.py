@@ -10,16 +10,13 @@ class Solution:
                 if s[::-1] == s:
                     palindrom_pairs.append([i,j]) #一开始写成+= 会自动连接成一维list 而不是独立的pairs
                 s = words[j] + words[i]
-                if s[::-1] == s:
                     palindrom_pairs.append([j,i])
         return palindrom_pairs
-
     #Sol2 O(n*w*w) 360ms 看起来很短 但是对于["abcd","dcba"] & ["bob",""] 这样的判断WA一次
     #改编自 https://leetcode.com/problems/palindrome-pairs/discuss/79209/Accepted-Python-Solution-With-Explanation
     def palindromePairs(self, words):
         m_words = {word:i for i,word in enumerate(words)}
         m_reversed_words = {word[::-1]:i for i, word in enumerate(words)}
-        palindrom_pairs = []
         for i, word in enumerate(words):
             for j in range(len(word)):
                 pref = word[:j]
@@ -30,13 +27,9 @@ class Solution:
                     palindrom_pairs.append([i, m_reversed_words[pref]])
                     if j==0: #pref == "" 这里不能忘吖！
                         palindrom_pairs.append([m_reversed_words[""],i])
-
-        return palindrom_pairs
-
     #Sol3 TRIE
     #https://leetcode.com/problems/palindrome-pairs/discuss/79195/O(n-*-k2)-java-solution-with-Trie-structure
     #https://www.cnblogs.com/dolphin0520/archive/2011/10/11/2207886.html
-    def palindromePairs(self, words: List[str]) -> List[List[int]]:
         #自己写的 sort+查找 WA 因为比较的left right的界限很难判定的
         def isPalindrom(s1:str, s2:str) -> bool:
             if len(s1)>len(s2):
@@ -48,7 +41,6 @@ class Solution:
         new_words.sort()#可以先不考虑 直接排
         #后续优化： 加一个.pop怎么样呀 
         reversed_words.sort()
-        palindrom_pairs = []
         debug = False
         if debug: 
             print(reversed_words)
@@ -75,17 +67,10 @@ class Solution:
                     break_flag = False
                 if length_r > length and reversed_word < word:
                     l = m + 1 
-                    break_flag = False
                 if break_flag:
                     break
             for j in range(l, r+1):
                 reversed_word, idx, length_r = reversed_words[j]
                 if idx!=i and isPalindrom(word, reversed_word):
                     palindrom_pairs.append([i, idx])
-        
-        
                                             
-        return palindrom_pairs
-
-
-
