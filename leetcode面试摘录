@@ -1,0 +1,49 @@
+Facebook @ Intern 1st Interview [Pass]
+
+4.6K VIEWS
+Overview
+Duration: About 45 minutes
+Questions: 3 if counting with the ones that I already knew
+Questions
+1. Serialize and Deserialize a Binary Tree
+I already knew this question, so I told him and he asked me to explain my solution, so I did and he accepted and moved to the next one.
+2. Lowest Common Ansestor
+I also did this question before, so I did like the previously one
+3. Smallest Subtree With Deepest Nodes
+This one I didn't solve before, so I started with an idea, but I didn't understand the whole output, so I was a little bit confused until ~40 mins of my interview but, at the end, I asked about the inputs and he corrected me, so I was able to solve it quickly and explain the space and time complexities.
+Conclusion
+I was able to move to the second interview even thinking that I went realy bad on this one. So don't be afraid about getting the best solution quickly. Discuss your solution with him and he'll help you to get there :)
+
+Amazon @ SDE3 client-side engineering, Seattle [Reject]
+28
+Anonymous User
+Anonymous User
+Last Edit: 20 hours ago
+4.2K VIEWS
+I'm a veteran developer in the problem domain
+
+Phone screen:
+Talk about a recent technical challenge (in the last five years)
+Find closest common node in a non-binary tree
+
+Onsite: (5 interviews, 1 hour each)
+Tech questions
+Find an empty cubby in a locker that will fit a package
+Interleave a linked list first element, last element, second element, n-1 element, etc in place (without using another data structure)
+Architect an app (within the same problem domain as the job)
+Report the kth most popular string in an incoming stream of strings; the best answer would have gone all the way to asynchronously updating the priority queue after new strings came in.
+
+'Leadership principles' questions:
+Talk about a time you were criticized and how you handled it
+Talk about a time you went above-and-beyond a problem spec
+Talk about a time you had to go down several layers/apis to solve a technical problem
+Talk about how you've gone about hiring people. Have you ever hired someone smarter than you?
+Talk about how you've mentored.
+Talk about a time you disagreed with a plan of action; this came up a couple of times in different ways, I forget the exact questions.
+Talk about a time you simplified something complicated.
+
+I felt like I'd never done so well at an onsite, though I did get blocked on the priority queue question and needed a hint to get the space complexity down from n to k.
+
+题目
+https://leetcode.com/discuss/interview-question/337344/google-onsite-network-flow-for-the-matrix-with-given-row-and-column-sums
+https://leetcode.com/discuss/interview-question/337515/google-onsite-chunked-palindrome/307919
