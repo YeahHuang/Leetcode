@@ -14,10 +14,22 @@ class Solution:
             r = i-1
             while l<=r:  
                 mid = (l+r)//2
-                if sorted_nums[mid] < target:
+                if sorted_nums[mid] < num:
                     l = mid + 1
                 else:
                     r = mid - 1
             count[i] = l 
             sorted_nums.insert(l, num)
-        return count.reverse()
+        return reversed(count) 
+
+    #别人的76ms的 但我这里就166ms 用了bisect https://docs.python.org/2/library/bisect.html
+    def countSmaller(self, nums: List[int]) -> List[int]:
+        count = [0] * len(nums)
+        nums.reverse()
+        sorted_nums = []
+        for i, num in enumerate(nums):
+            idx = bisect.bisect_left(sorted_nums, num)
+            #还有bisect.insort_left bisect.insort_right
+            count[i] = idx
+            sorted_nums.insert(idx, num)
+        return reversed(count)
