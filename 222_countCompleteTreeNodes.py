@@ -20,7 +20,6 @@ class Solution:
             while tmp_tree!=None:
                 tmp_tree = tmp_tree.right
                 right_depth += 1
-
                 
             if left_depth == right_depth:
                 return 2**right_depth - 1
@@ -32,6 +31,22 @@ class Solution:
                     return 2**right_depth - 1 + (qpp - (2**(right_depth-1) - 1))
 
         return count(root)
+
+        #这样似乎更清晰一些 88ms
+        def countNodes(self, root):
+            if not root:
+                return 0
+            leftDepth = self.getDepth(root.left)
+            rightDepth = self.getDepth(root.right)
+            if leftDepth == rightDepth: #相等 则左边必然完整
+                return pow(2, leftDepth) + self.countNodes(root.right)
+            else:   #不等 则右边必然完整
+                return pow(2, rightDepth) + self.countNodes(root.left)
+    
+        def getDepth(self, root):
+            if not root:
+                return 0
+            return 1 + self.getDepth(root.left)
 
         '''
         dfs 先判断是否稳定 如果Depth of left most = Depth of right most 就是稳定
