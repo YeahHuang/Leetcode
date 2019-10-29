@@ -25,3 +25,9 @@ class Solution:
         letter_logs = filter(lambda log: log[log.find(" ") + 1].isalpha(), logs)
         digit_logs = filter(lambda log: log[log.find(" ") + 1].isdigit(), logs)
         return sorted(letter_logs, key = lambda log: (log[log.find(" "):], log[:log.find(" ")])) + list(digit_logs)
+
+        '''
+        filter举例：https://book.pythontips.com/en/latest/map_filter.html
+        number_list = range(-5, 5)
+        less_than_zero = list(filter(lambda x: x < 0, number_list))
+        '''
