@@ -1,3 +1,5 @@
+
+//56ms faster than 47.96%
 class Solution {
 public:
     string longestPalindrome(string s) {
@@ -33,4 +35,69 @@ public:
     }
 };
 
-//faster than 47.96%
+//48ms
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        if (s.empty()) return "";
+        int q,p1,p2, ans = 1;
+        int n = s.length();
+        string ret = s.substr(0,1);
+        for (int i=1; i<n; i++){
+            p1 = expand(s, n, i-1, i);
+            if (p1>ans)
+            {
+                ans = p1; ret = s.substr(i-p1/2,p1 );
+            }
+            if (i!=n-1) {
+                p2 = expand(s, n, i-1, i+1);
+                if (p2>ans)
+                {
+                    ans = p2; ret = s.substr(i-p2/2,p2 );
+                };
+            };
+        };
+        return ret;
+    }
+private:
+    int expand(string s, int n, int left, int right){
+        if (s[left]!=s[right])
+            return 0;
+        while (left-1>=0 && right+1<n && s[left-1]==s[right+1])
+            {left--;right++;};
+        return right-left+1;
+    }
+};
+
+//dp
+class Solution {
+public:
+    // dp: palin[i][j] = (s[i]==s[j] && s[i+1][j-1])
+    // substr -> make_pair 1556ms -> 184ms
+    string longestPalindrome(string s) {
+        bool palin[1001][1001];
+        int n = s.size();
+        if (n==0) return "";
+        //string res = s.substr(0,1); //s.substr(start_idx, len)
+        pair<int, int> res = {0,1};
+        for (int i=0; i<n-1; i++){
+            palin[i][i] = true;
+            palin[i][i+1] = (s[i]==s[i+1]);
+            if (palin[i][i+1])
+                //res = s.substr(i,2); 
+                res = make_pair(i, 2);
+        }
+        palin[n-1][n-1] = true;
+        for (int len=2; len < n; len++)
+            for (int i=0; i < n-len; i++){ // i + len < n  so i < n-len
+                if (s[i] == s[i+len] && palin[i+1][i+len-1]){
+                    //res = s.substr(i, len+1);
+                    res = make_pair(i, len+1);
+                    palin[i][i+len] = true;
+                }
+                else palin[i][i+len] = false;
+            }
+        //return res;
+        return s.substr(res.first, res.second);
+    }
+};
