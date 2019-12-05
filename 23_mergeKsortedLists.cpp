@@ -6,6 +6,40 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+/*
+1 2 3 4 5 6 7
+ 1+2 -> 8
+ 3+4 -> 9
+ 5+6 -> 10
+ 
+ 8 + 9 -> 11
+ 10 + 7 -> 12
+ 
+ 11 + 12    lgK 
+ 
+ Divide and Conquer N lg K
+ 
+ Pair up k lists and merge each pair.
+
+After the first pairing,  k lists are merged into k/2 
+k/2 lists with average 2N/k2N/k length, then k/4k/4, k/8k/8 and so on.
+
+Repeat this procedure until we get the final sorted linked list.
+
+
+ min-heap size = k
+ (elements, list_idx)
+
+*/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
  
 class Solution { //Divide&Conquer大法好。 NlogK  32ms > 46.64% 没有尝试k最小堆 复杂度一样的 以后有机会试一下。
 public:
