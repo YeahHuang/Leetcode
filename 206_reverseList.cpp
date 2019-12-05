@@ -5,6 +5,7 @@
  *     ListNode *next;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
+ 递归 head->next->next = head; head->next = NULL; 
  */
 class Solution {
 public:
@@ -25,6 +26,7 @@ public:
         }
         return revHead.next;
     }*/
+    //12.4 重写了一遍 一次AC
     ListNode* reverseList(ListNode* head) { //12ms
         //ListNode revHead(0);
         ListNode *cur, *prev=NULL;
@@ -55,4 +57,36 @@ private:
     bool debug = true;
 };
 
-//36ms >0.77%
+//36ms 和我最开始的一样 写于10.30 >0.77%
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* cur, *tmp;
+        if (!head || !head->next) return head;
+        cur = head; 
+        ListNode tmp1 = ListNode(0);
+        if (cur->next == NULL)
+            return cur;
+        while (cur->next)
+        {
+            if (cur->next->next)
+                cur = cur->next;
+            else
+            {
+                tmp = &tmp1;
+                tmp->next = new ListNode(cur->next->val);
+                cur->next = NULL;
+                tmp->next->next = reverseList(head);
+                break;     
+        };};
+        return tmp1.next;
+    };
+};
