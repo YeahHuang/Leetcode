@@ -22,6 +22,42 @@ class Solution:
         #这里本来也需要set(dsu.find(x),dsu.find(y)) 但因为前面的东西保证二者必然相同 所以省略
         return len(stones) - islands
 
+#sol1.1 188ms -> 172ms 而且内存基本没变 
+class DSU: #Disjoint Set Union 就是常见的染色问题
+    def __init__(self):
+        self.p = {}
+        self.sz = {}
+
+    def find(self, x):
+
+        stack = []
+        while self.p[x] != x:
+            stack.append(x)
+            x = self.p[x]
+        for xx in stack:
+            self.p[xx] = x
+        '''
+        if self.p[x] != x: 会MLE
+            self.p[x] = self.find(self.p[x])
+        '''
+        return x
+
+    def union(self, x, y):
+        self.p.setdefault(x,x)
+        self.sz.setdefault(x,1)
+        self.p.setdefault(y,y)
+        self.sz.setdefault(y,1)
+        px, py = self.find(x), self.find(y)
+        if px == py:
+            return False
+        if self.sz[px] < self.sz[py]:
+            self.sz[py] += self.sz[px]
+            self.p[px] = self.p[py]
+        else:
+            self.sz[px] += self.sz[py]
+            self.p[py] = self.p[px]
+        return True
+
 #Sol2 dfs 156ms
 class Solution:
     def removeStones(self, stones):
