@@ -68,6 +68,7 @@ class Solution:
                 nums.remove(last)
             maxlen = max(maxlen, last - first + 1)
         return maxle
+
 #sol4 4.28 update 用union find (类似于sol1) 84ms
 class DSU: #Disjoint Set Union 就是常见的染色问题
     def __init__(self):
