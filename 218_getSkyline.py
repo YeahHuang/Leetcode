@@ -1,4 +1,4 @@
-class Solution:
+sclass Solution:
     def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:
 
         #version1 没二分插入 因为觉得已经sort 212ms
@@ -75,16 +75,16 @@ class Solution:
         return ans
 
 
-        #别人用heapq的维护方法 120ms
-        def getSkyline(self, buildings):
+#别人用heapq的维护方法 120ms
+def getSkyline(self, buildings):
     events = sorted([(L, -H, R) for L, R, H in buildings] + list({(R, 0, None) for _, R, _ in buildings}))
     res, hp = [[0, 0]], [(0, float("inf"))]
-    for x, negH, R in events:
-        while x >= hp[0][1]: 
+    for l, negH, R in events:
+        while l >= hp[0][1]: 
             heapq.heappop(hp)
-        if negH: 
+        if negH: #是上升的
             heapq.heappush(hp, (negH, R))
         if res[-1][1] + hp[0][0]: 
-            res += [x, -hp[0][0]],
+            res += [x, -hp[0][0]] #可能是啥都没做的 r,0  也可能是当前最高的
     return res[1:]
 
